@@ -19,6 +19,13 @@ data class Ticket(
     val image3: String
 )
 
+data class TicketDemo(
+    val numero: Int,
+    val titulo: String,
+    val tipoIncidencia: String,
+    val gravedad: String
+)
+
 enum class incidentTypePriority{
     BUG, FEATURE
 }
