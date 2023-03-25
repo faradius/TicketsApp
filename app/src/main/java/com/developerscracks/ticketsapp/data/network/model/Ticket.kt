@@ -4,8 +4,10 @@ import java.util.Date
 
 data class Ticket(
     val id: String,
+    val numTicket: String,
     val titleTicket: String,
     val dateTicket: Date,
+    val statusTicket: String,
     val personInCharge: String,
     val responsibleTeam: String,
     val incidentType: String,
@@ -16,3 +18,19 @@ data class Ticket(
     val image2: String,
     val image3: String
 )
+
+enum class incidentTypePriority{
+    BUG, FEATURE
+}
+
+enum class severityIncidentPriority{
+    HIGH, MEDIUM, LOW
+}
+
+enum class responsibleTeam{
+    SUPPORT, DEVELOP, CUSTOMER_SUPPORT
+}
+
+enum class statusTicket{
+    NEW, IN_PROGRESS, ATTENDED
+}
