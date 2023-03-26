@@ -1,36 +1,44 @@
 package com.developerscracks.ticketsapp.data.network.model
 
-import java.util.Date
-
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+@Parcelize
 data class Ticket(
-    val id: String,
-    val numTicket: String,
+    val idTicket: String = "",
+    val numTicket: String = "0",
     val titleTicket: String,
-    val dateTicket: Date,
-    val statusTicket: String,
+    val dateTicket: String = "",
+    val statusTicket: StatusTicket = StatusTicket.NEW,
     val personInCharge: String,
-    val responsibleTeam: String,
-    val incidentType: String,
-    val severityIncident: String,
+    val responsibleTeam: String = "",
+    val incidentType: String = "",
+    val severityIncident: String = "",
     val versionSoftware: String,
     val descriptionProblem: String,
-    val image1: String,
-    val image2: String,
-    val image3: String
+    val image1: String? = "",
+    val image2: String? = "",
+    val image3: String? = ""
+):Parcelable
+
+data class TicketDemo(
+    val numero: Int,
+    val titulo: String,
+    val tipoIncidencia: String,
+    val gravedad: String
 )
 
-enum class incidentTypePriority{
+enum class IncidentTypePriority{
     BUG, FEATURE
 }
 
-enum class severityIncidentPriority{
+enum class SeverityIncidentPriority{
     HIGH, MEDIUM, LOW
 }
 
-enum class responsibleTeam{
+enum class ResponsibleTeam{
     SUPPORT, DEVELOP, CUSTOMER_SUPPORT
 }
 
-enum class statusTicket{
+enum class StatusTicket{
     NEW, IN_PROGRESS, ATTENDED
 }

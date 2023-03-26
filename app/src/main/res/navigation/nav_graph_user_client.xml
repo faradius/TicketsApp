@@ -7,12 +7,57 @@
 
     <fragment
         android:id="@+id/listTicketsFragment"
-        android:name="com.developerscracks.ticketsapp.ui.user_client.home.fragments.ListTicketsFragment"
+        android:name="com.developerscracks.ticketsapp.ui.home.view.ListTicketsFragment"
         android:label="fragment_list_tickets"
-        tools:layout="@layout/fragment_list_tickets" />
+        tools:layout="@layout/fragment_list_tickets" >
+        <action
+            android:id="@+id/action_listTicketsFragment_to_detailTicketFragment"
+            app:destination="@id/detailTicketFragment" />
+        <action
+            android:id="@+id/action_listTicketsFragment_to_createTicketFragment"
+            app:destination="@id/createTicketFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.developerscracks.ticketsapp.ui.login.LoginFragment"
+        android:name="com.developerscracks.ticketsapp.ui.login.view.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_listTicketsFragment"
+            app:destination="@id/listTicketsFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailTicketFragment"
+        android:name="com.developerscracks.ticketsapp.ui.detail_ticket.view.DetailTicketFragment"
+        android:label="fragment_detail_ticket"
+        tools:layout="@layout/fragment_detail_ticket" >
+        <action
+            android:id="@+id/action_detailTicketFragment_to_updateTicketFragment"
+            app:destination="@id/updateTicketFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createTicketFragment"
+        android:name="com.developerscracks.ticketsapp.ui.create_ticket.view.CreateTicketFragment"
+        android:label="fragment_create_ticket"
+        tools:layout="@layout/fragment_create_ticket" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.developerscracks.ticketsapp.ui.register.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_listTicketsFragment"
+            app:destination="@id/listTicketsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateTicketFragment"
+        android:name="com.developerscracks.ticketsapp.ui.update_ticket.UpdateTicketFragment"
+        android:label="fragment_update_ticket"
+        tools:layout="@layout/fragment_update_ticket" />
 </navigation>
