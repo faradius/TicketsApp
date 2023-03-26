@@ -9,10 +9,23 @@
         android:id="@+id/listTicketsFragment"
         android:name="com.developerscracks.ticketsapp.ui.user_client.home.fragments.ListTicketsFragment"
         android:label="fragment_list_tickets"
-        tools:layout="@layout/fragment_list_tickets" />
+        tools:layout="@layout/fragment_list_tickets" >
+        <action
+            android:id="@+id/action_listTicketsFragment_to_detailTicketFragment"
+            app:destination="@id/detailTicketFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.developerscracks.ticketsapp.ui.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/detailTicketFragment"
+        android:name="com.developerscracks.ticketsapp.ui.user_client.detail_ticket.DetailTicketFragment"
+        android:label="fragment_detail_ticket"
+        tools:layout="@layout/fragment_detail_ticket" >
+        <argument
+            android:name="ticket"
+            app:argType="com.developerscracks.ticketsapp.data.network.model.Ticket" />
+    </fragment>
 </navigation>
