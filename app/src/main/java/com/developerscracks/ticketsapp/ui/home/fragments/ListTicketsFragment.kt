@@ -1,4 +1,4 @@
-package com.developerscracks.ticketsapp.ui.user_client.home.fragments
+package com.developerscracks.ticketsapp.ui.home.fragments
 
 import android.os.Build
 import android.os.Bundle
@@ -14,7 +14,7 @@ import com.developerscracks.ticketsapp.data.network.model.StatusTicket
 import com.developerscracks.ticketsapp.data.network.model.Ticket
 import com.developerscracks.ticketsapp.data.network.model.TicketDemo
 import com.developerscracks.ticketsapp.databinding.FragmentListTicketsBinding
-import com.developerscracks.ticketsapp.ui.user_client.home.adapters.TicketListAdapter
+import com.developerscracks.ticketsapp.ui.home.adapters.TicketListAdapter
 import java.time.LocalDate
 import java.util.Date
 
@@ -89,7 +89,10 @@ class ListTicketsFragment : Fragment() {
 
         val rvTicketAdapter = TicketListAdapter(
             onClick = {selectTicket ->
-                val action = ListTicketsFragmentDirections.actionListTicketsFragmentToDetailTicketFragment(selectTicket)
+                val action =
+                    ListTicketsFragmentDirections.actionListTicketsFragmentToDetailTicketFragment(
+                        selectTicket
+                    )
                 findNavController().navigate(action)
             }
         )
@@ -99,6 +102,11 @@ class ListTicketsFragment : Fragment() {
         binding.rvTickets.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = rvTicketAdapter
+        }
+
+        binding.fabNewTicket.setOnClickListener {
+            val action = ListTicketsFragmentDirections.actionListTicketsFragmentToCreateTicketFragment()
+            findNavController().navigate(action)
         }
     }
 

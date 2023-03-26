@@ -1,4 +1,4 @@
-package com.developerscracks.ticketsapp.ui.user_client.home.adapters
+package com.developerscracks.ticketsapp.ui.home.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

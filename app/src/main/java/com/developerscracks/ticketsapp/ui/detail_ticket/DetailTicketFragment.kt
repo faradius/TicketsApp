@@ -1,4 +1,4 @@
-package com.developerscracks.ticketsapp.ui.user_client.detail_ticket
+package com.developerscracks.ticketsapp.ui.detail_ticket
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
