@@ -1,4 +1,4 @@
-package com.developerscracks.ticketsapp.ui.detail_ticket
+package com.developerscracks.ticketsapp.ui.detail_ticket.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.developerscracks.ticketsapp.R
 import com.developerscracks.ticketsapp.databinding.FragmentDetailTicketBinding
-
 
 
 class DetailTicketFragment : Fragment() {
@@ -42,7 +40,8 @@ class DetailTicketFragment : Fragment() {
         binding.tvDescriptionProblem.text = args.ticket.descriptionProblem
 
         binding.fabEditTicket.setOnClickListener {
-            val action = DetailTicketFragmentDirections.actionDetailTicketFragmentToUpdateTicketFragment()
+            val action =
+                DetailTicketFragmentDirections.actionDetailTicketFragmentToUpdateTicketFragment()
             findNavController().navigate(action)
         }
     }

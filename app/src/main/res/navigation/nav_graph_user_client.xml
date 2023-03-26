@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailTicketFragment"
-        android:name="com.developerscracks.ticketsapp.ui.detail_ticket.DetailTicketFragment"
+        android:name="com.developerscracks.ticketsapp.ui.detail_ticket.view.DetailTicketFragment"
         android:label="fragment_detail_ticket"
         tools:layout="@layout/fragment_detail_ticket" >
         <argument
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/createTicketFragment"
-        android:name="com.developerscracks.ticketsapp.ui.create_ticket.CreateTicketFragment"
+        android:name="com.developerscracks.ticketsapp.ui.create_ticket.view.CreateTicketFragment"
         android:label="fragment_create_ticket"
         tools:layout="@layout/fragment_create_ticket" />
     <fragment

@@ -10,11 +10,8 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.developerscracks.ticketsapp.R
 import com.developerscracks.ticketsapp.core.Response
-import com.developerscracks.ticketsapp.databinding.FragmentDetailTicketBinding
 import com.developerscracks.ticketsapp.databinding.FragmentLoginBinding
-import com.developerscracks.ticketsapp.ui.detail_ticket.DetailTicketFragmentDirections
 import com.developerscracks.ticketsapp.ui.login.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -54,7 +51,7 @@ class LoginFragment : Fragment() {
                         }
 
                         is Response.Failure -> {
-                            Toast.makeText(requireContext(), "Error: ${result.exception}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), "Error: ${result.exception?.message}", Toast.LENGTH_SHORT).show()
                         }
                         else -> Log.d("TAG", "Error: Error Desconocido")
                     }

@@ -2,8 +2,8 @@ package com.developerscracks.ticketsapp.di
 
 import com.developerscracks.ticketsapp.data.network.datasource.userAuth.UserAuthDataSource
 import com.developerscracks.ticketsapp.data.network.datasource.userAuth.UserAuthDataSourceImpl
-import com.developerscracks.ticketsapp.data.repository.UserAuthRepository
-import com.developerscracks.ticketsapp.data.repository.UserAuthRepositoryImpl
+import com.developerscracks.ticketsapp.data.repository.userAuth.UserAuthRepository
+import com.developerscracks.ticketsapp.data.repository.userAuth.UserAuthRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

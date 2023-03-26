@@ -3,22 +3,25 @@ package com.developerscracks.ticketsapp.ui.login.viewmodel
 import android.util.Log
 import androidx.lifecycle.*
 import com.developerscracks.ticketsapp.core.Response
-import com.developerscracks.ticketsapp.domain.use_cases.AuthUseCases
+import com.developerscracks.ticketsapp.domain.use_cases.userAuth.AuthUseCases
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(private val authUseCases: AuthUseCases) : ViewModel() {
 
 
-    private val _loginResponse = MutableLiveData<Response<FirebaseUser>?>(null)
+    private var _loginResponse = MutableLiveData<Response<FirebaseUser>?>(null)
     val loginResponse: LiveData<Response<FirebaseUser>?> = _loginResponse
+
+    private val currentUser = authUseCases.getCurrentUser()
+
+    init {
+        if (currentUser != null){
+            _loginResponse.postValue(Response.Success(currentUser))
+        }
+    }
 
 
     fun login(email: String, password: String) = liveData(viewModelScope.coroutineContext) {
