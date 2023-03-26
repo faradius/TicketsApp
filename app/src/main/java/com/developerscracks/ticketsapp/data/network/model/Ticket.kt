@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Ticket(
     val idTicket: String = "",
-    val numTicket: Int = 0,
+    val numTicket: String = "0",
     val titleTicket: String,
     val dateTicket: String = "",
     val statusTicket: StatusTicket = StatusTicket.NEW,

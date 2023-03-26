@@ -9,4 +9,8 @@ class TicketRepositoryImpl @Inject constructor(private val ticketDataSource: Tic
     override suspend fun createTicket(ticket: Ticket): Response<Boolean> {
         return ticketDataSource.createTicket(ticket)
     }
+
+    override suspend fun getTickets(): Response<List<Ticket>> {
+        return ticketDataSource.getTickets()
+    }
 }

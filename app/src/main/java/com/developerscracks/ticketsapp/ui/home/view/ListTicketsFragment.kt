@@ -1,33 +1,47 @@
-package com.developerscracks.ticketsapp.ui.home.fragments
+package com.developerscracks.ticketsapp.ui.home.view
 
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.developerscracks.ticketsapp.R
 import com.developerscracks.ticketsapp.data.network.model.StatusTicket
 import com.developerscracks.ticketsapp.data.network.model.Ticket
-import com.developerscracks.ticketsapp.data.network.model.TicketDemo
 import com.developerscracks.ticketsapp.databinding.FragmentListTicketsBinding
 import com.developerscracks.ticketsapp.ui.home.adapters.TicketListAdapter
-import java.time.LocalDate
-import java.util.Date
+import com.developerscracks.ticketsapp.ui.home.viewmodel.ListTicketsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ListTicketsFragment : Fragment() {
 
     private var _binding: FragmentListTicketsBinding? = null
     private val binding get() = _binding!!
 
+    private val viewModel by viewModels<ListTicketsViewModel>()
+
+//    private val rvTicketAdapter = TicketListAdapter(
+//        onClick = {
+//                val action =
+//                    ListTicketsFragmentDirections.actionListTicketsFragmentToCreateTicketFragment(
+//                        it
+//                    )
+//                findNavController().navigate(action)
+//        }
+//    )
+
+    private val ticketAdapter: TicketListAdapter = TicketListAdapter {
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        subscribeTickets()
         _binding = FragmentListTicketsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -35,11 +49,13 @@ class ListTicketsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getTickets()
 
+        //Pruebas
         val tickets = listOf(
             Ticket(
                 "TCK-001",
-                1,
+                "1",
                 "Error al iniciar sesión",
                 "15/01/2022",
                 StatusTicket.NEW,
@@ -55,7 +71,7 @@ class ListTicketsFragment : Fragment() {
             ),
             Ticket(
                 "TCK-002",
-                2,
+                "2",
                 "Agregar función de búsqueda",
                 "15/01/2022",
                 StatusTicket.NEW,
@@ -71,7 +87,7 @@ class ListTicketsFragment : Fragment() {
             ),
             Ticket(
                 "TCK-003",
-                3,
+                "3",
                 "Problemas con la carga de archivos",
                 "15/01/2022",
                 StatusTicket.NEW,
@@ -87,21 +103,9 @@ class ListTicketsFragment : Fragment() {
             )
         )
 
-        val rvTicketAdapter = TicketListAdapter(
-            onClick = {selectTicket ->
-                val action =
-                    ListTicketsFragmentDirections.actionListTicketsFragmentToDetailTicketFragment(
-                        selectTicket
-                    )
-                findNavController().navigate(action)
-            }
-        )
-
-        rvTicketAdapter.submitList(tickets)
-
         binding.rvTickets.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = rvTicketAdapter
+            adapter = ticketAdapter
         }
 
         binding.fabNewTicket.setOnClickListener {
@@ -109,6 +113,13 @@ class ListTicketsFragment : Fragment() {
             findNavController().navigate(action)
         }
     }
+
+    fun subscribeTickets(){
+        viewModel.tickets.observe(viewLifecycleOwner){
+            ticketAdapter.submit(it)
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

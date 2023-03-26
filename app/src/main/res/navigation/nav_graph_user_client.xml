@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listTicketsFragment"
-        android:name="com.developerscracks.ticketsapp.ui.home.fragments.ListTicketsFragment"
+        android:name="com.developerscracks.ticketsapp.ui.home.view.ListTicketsFragment"
         android:label="fragment_list_tickets"
         tools:layout="@layout/fragment_list_tickets" >
         <action
@@ -34,9 +34,6 @@
         android:name="com.developerscracks.ticketsapp.ui.detail_ticket.view.DetailTicketFragment"
         android:label="fragment_detail_ticket"
         tools:layout="@layout/fragment_detail_ticket" >
-        <argument
-            android:name="ticket"
-            app:argType="com.developerscracks.ticketsapp.data.network.model.Ticket" />
         <action
             android:id="@+id/action_detailTicketFragment_to_updateTicketFragment"
             app:destination="@id/updateTicketFragment" />

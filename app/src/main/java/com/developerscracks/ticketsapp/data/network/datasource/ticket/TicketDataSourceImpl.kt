@@ -17,9 +17,26 @@ class TicketDataSourceImpl @Inject constructor(
 
     override suspend fun createTicket(ticket: Ticket): Response<Boolean> {
         return try{
-            ticketRef.add(ticket).await()
 //            firebaseAuth.currentUser?.let { db.document(it.uid).set(ticket).await() }
+            ticketRef.add(ticket).await()
             Response.Success(true)
+        }catch (e: Exception){
+            e.printStackTrace()
+            Response.Failure(e)
+        }
+    }
+
+    override suspend fun getTickets(): Response<List<Ticket>> {
+        val ticketsColletion = ticketRef
+
+        return try {
+            val ticketsListSnapshot = ticketsColletion.get().await()
+            val tickets = mutableListOf<Ticket>()
+            for (document in ticketsListSnapshot){
+                val ticket = document.toObject(Ticket::class.java)
+                tickets.add(ticket)
+            }
+            Response.Success(tickets)
         }catch (e: Exception){
             e.printStackTrace()
             Response.Failure(e)

@@ -11,6 +11,6 @@ interface TicketDataSource {
 
     suspend fun createTicket(ticket: Ticket): Response<Boolean>
 //    suspend fun updateTicket(ticket: Ticket): Response<Boolean>
-//    suspend fun getTickets():Response<List<Ticket>>
+    suspend fun getTickets():Response<List<Ticket>>
 
 }

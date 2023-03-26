@@ -7,22 +7,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.developerscracks.ticketsapp.data.network.model.Ticket
 import com.developerscracks.ticketsapp.databinding.TicketItemLayoutBinding
+import com.developerscracks.ticketsapp.domain.model.TicketUI
 
-class TicketListAdapter(private val onClick: (Ticket) -> Unit) :
-    ListAdapter<Ticket, TicketListAdapter.TicketsViewHolder>(TicketDiffUtil) {
+class TicketListAdapter(private val onClick: (String) -> Unit) :
+    RecyclerView.Adapter<TicketListAdapter.TicketsViewHolder>() {
 
-    //private var onItemClickListener: ((Ticket) -> Unit)? = null
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketsViewHolder {
-        return TicketsViewHolder(
-            TicketItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        )
-    }
-
-    override fun onBindViewHolder(holder: TicketsViewHolder, position: Int) {
-        val ticket = getItem(position)
-        holder.bind(ticket)
-    }
+    private var tickets: List<TicketUI> = mutableListOf()
 
     inner class TicketsViewHolder(
         itemBinding: TicketItemLayoutBinding
@@ -33,18 +23,7 @@ class TicketListAdapter(private val onClick: (Ticket) -> Unit) :
         private val priorityTicket = itemBinding.tvPriorityTicket
         private val severityTicket = itemBinding.tvSeverityIncident
 
-        private var currentTicket: Ticket? = null
-
-        init {
-            itemView.setOnClickListener {
-                currentTicket?.let {
-                    onClick(it)
-                }
-            }
-        }
-
-        fun bind(ticket: Ticket) {
-            currentTicket = ticket
+        fun bind(ticket: TicketUI, onClick: (String) -> Unit) {
 
             numTicket.text = ticket.numTicket.toString()
             titleTicket.text = ticket.titleTicket
@@ -53,15 +32,22 @@ class TicketListAdapter(private val onClick: (Ticket) -> Unit) :
         }
     }
 
-}
-
-object TicketDiffUtil : DiffUtil.ItemCallback<Ticket>() {
-    override fun areItemsTheSame(oldItem: Ticket, newItem: Ticket): Boolean {
-        return oldItem.idTicket == newItem.idTicket
+    fun submit(ticketsList: List<TicketUI>) {
+        tickets = ticketsList
+        notifyDataSetChanged()
     }
 
-    override fun areContentsTheSame(oldItem: Ticket, newItem: Ticket): Boolean {
-        return oldItem == newItem
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketsViewHolder {
+        return TicketsViewHolder(
+            TicketItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        )
     }
 
+    override fun getItemCount(): Int {
+        return tickets.size
+    }
+
+    override fun onBindViewHolder(holder: TicketsViewHolder, position: Int) {
+        holder.bind(tickets[position], onClick)
+    }
 }
