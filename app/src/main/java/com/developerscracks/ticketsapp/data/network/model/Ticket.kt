@@ -4,17 +4,17 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Ticket(
-    val idTicket: String = "",
-    val numTicket: String = "0",
-    val titleTicket: String,
-    val dateTicket: String = "",
-    val statusTicket: StatusTicket = StatusTicket.NEW,
-    val personInCharge: String,
-    val responsibleTeam: String = "",
-    val incidentType: String = "",
-    val severityIncident: String = "",
-    val versionSoftware: String,
-    val descriptionProblem: String,
+    val idTicket: String? = "",
+    val numTicket: String? = "",
+    val titleTicket: String? = "",
+    val dateTicket: String? = "",
+    val statusTicket: String? = "",
+    val personInCharge: String? = "",
+    val responsibleTeam: String? = "",
+    val incidentType: String? = "",
+    val severityIncident: String? = "",
+    val versionSoftware: String? = "",
+    val descriptionProblem: String? = "",
     val image1: String? = "",
     val image2: String? = "",
     val image3: String? = ""

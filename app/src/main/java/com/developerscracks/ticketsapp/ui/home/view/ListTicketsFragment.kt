@@ -52,7 +52,7 @@ class ListTicketsFragment : Fragment() {
         viewModel.getTickets()
 
         //Pruebas
-        val tickets = listOf(
+        /*val tickets = listOf(
             Ticket(
                 "TCK-001",
                 "1",
@@ -101,7 +101,7 @@ class ListTicketsFragment : Fragment() {
                 "",
                 ""
             )
-        )
+        )*/
 
         binding.rvTickets.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

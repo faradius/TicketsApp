@@ -14,9 +14,9 @@ data class TicketUI(
 
 fun Ticket.toTicketSimpleUI(): TicketUI{
     return TicketUI(
-        numTicket = this.numTicket,
-        titleTicket = this.titleTicket,
-        incidentType = this.incidentType,
-        severityIncident = this.severityIncident
+        numTicket = this.numTicket.orEmpty(),
+        titleTicket = this.titleTicket.orEmpty(),
+        incidentType = this.incidentType.orEmpty(),
+        severityIncident = this.severityIncident.orEmpty()
     )
 }
